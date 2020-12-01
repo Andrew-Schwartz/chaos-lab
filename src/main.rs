@@ -25,11 +25,11 @@ fn eps_eq(f1: f32, f2: f32) -> bool {
 const SKIP: usize = 200;
 const GENS: usize = 1000;
 
-const SIZE: u32 = 24;
+const STEPS_PER_INT: f32 = 10000.0;
+
+const SIZE: u32 = 64;
 const BORDER_SIZE: i32 = 30 * SIZE as i32;
 const LABEL_SIZE: i32 = 13 * SIZE as i32;
-
-const STEPS_PER_INT: f32 = 10000.0;
 
 fn main() {
     let fill = Instant::now();
@@ -72,7 +72,7 @@ fn main() {
     let build = Instant::now();
     eprintln!("dedup = {:?}", build.duration_since(dedup));
 
-    let root = BitMapBackend::new("chaos.png", (640 * SIZE, 480 * SIZE)).into_drawing_area();
+    let root = BitMapBackend::new("chaos_very_large.png", (640 * SIZE, 480 * SIZE)).into_drawing_area();
     root.fill(&WHITE).unwrap();
     let mut chart = ChartBuilder::on(&root)
         .margin(50)
@@ -114,6 +114,10 @@ fn main() {
         },
     )).unwrap();
 
-    let done = Instant::now();
-    eprintln!("draw  = {:?}", done.duration_since(draw));
+    let save = Instant::now();
+    eprintln!("draw  = {:?}", save.duration_since(draw));
+
+    drop(chart);
+    drop(root);
+    eprintln!("save  = {:?}", save.elapsed());
 }
