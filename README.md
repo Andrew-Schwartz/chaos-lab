@@ -6,4 +6,4 @@ with as much precision as I wanted, so I wrote some Rust to make some very large
 [Onset of Chaos Graph](chaos.png) (`15,360×11,520`)
 ![Example Output](chaos.png)
 
-![Very Large Onset of Chaos Graph](chaos_very_large.png)(`40,960×30,720`)
+![Large Onset of Chaos Graph](chaos_large.png)(`25,600×19,200`)

@@ -27,7 +27,7 @@ const GENS: usize = 1000;
 
 const STEPS_PER_INT: f32 = 10000.0;
 
-const SIZE: u32 = 64;
+const SIZE: u32 = 8;
 const BORDER_SIZE: i32 = 30 * SIZE as i32;
 const LABEL_SIZE: i32 = 13 * SIZE as i32;
 
@@ -72,7 +72,7 @@ fn main() {
     let build = Instant::now();
     eprintln!("dedup = {:?}", build.duration_since(dedup));
 
-    let root = BitMapBackend::new("chaos_very_large.png", (640 * SIZE, 480 * SIZE)).into_drawing_area();
+    let root = BitMapBackend::new("chaos_small.png", (640 * SIZE, 480 * SIZE)).into_drawing_area();
     root.fill(&WHITE).unwrap();
     let mut chart = ChartBuilder::on(&root)
         .margin(50)
