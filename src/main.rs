@@ -33,8 +33,8 @@ chaos_large      40
 chaos_very_large 64
  */
 
-const SIZE: u32 = 40;
-const FILE: &'static str = "chaos_large.png";
+const SIZE: u32 = 46;
+const FILE: &'static str = "chaos_very_large.png";
 const BORDER_SIZE: i32 = 30 * SIZE as i32;
 const LABEL_SIZE: i32 = 13 * SIZE as i32;
 const STEPS_PER_INT: f32 = (400 * SIZE) as f32;
@@ -91,7 +91,7 @@ fn main() {
     chart.configure_mesh()
         .x_desc("rate (a)")
         .x_label_style(("sans-serif", LABEL_SIZE))
-        .y_desc("population")
+        .y_desc("steady state population")
         .y_label_style(("sans-serif", LABEL_SIZE))
         .bold_line_style(ShapeStyle {
             color: BLACK.mix(0.3),
