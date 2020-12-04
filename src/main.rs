@@ -25,11 +25,19 @@ fn eps_eq(f1: f32, f2: f32) -> bool {
 const SKIP: usize = 200;
 const GENS: usize = 1000;
 
-const STEPS_PER_INT: f32 = 10000.0;
+/*
+image.png        SIZE
+chaos_small      8
+chaos            24
+chaos_large      40
+chaos_very_large 64
+ */
 
-const SIZE: u32 = 8;
+const SIZE: u32 = 40;
+const FILE: &'static str = "chaos_large.png";
 const BORDER_SIZE: i32 = 30 * SIZE as i32;
 const LABEL_SIZE: i32 = 13 * SIZE as i32;
+const STEPS_PER_INT: f32 = (400 * SIZE) as f32;
 
 fn main() {
     let fill = Instant::now();
@@ -72,7 +80,7 @@ fn main() {
     let build = Instant::now();
     eprintln!("dedup = {:?}", build.duration_since(dedup));
 
-    let root = BitMapBackend::new("chaos_small.png", (640 * SIZE, 480 * SIZE)).into_drawing_area();
+    let root = BitMapBackend::new(FILE, (640 * SIZE, 480 * SIZE)).into_drawing_area();
     root.fill(&WHITE).unwrap();
     let mut chart = ChartBuilder::on(&root)
         .margin(50)
@@ -108,7 +116,7 @@ fn main() {
     chart.draw_series(PointSeries::of_element(
         vec.into_iter().map(|(a, x)| (a as f32, x as f32)),
         1,
-        &RED,
+        &BLUE,
         &|c, s, st| {
             return Circle::new(c, s, st.filled());
         },
